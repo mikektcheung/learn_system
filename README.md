@@ -1,1 +1,1 @@
-# Learning System for Student
+# Learning Management System for Student
