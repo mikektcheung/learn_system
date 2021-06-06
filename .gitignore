@@ -130,7 +130,7 @@ dmypy.json
 
 # Statics files 
 static/fontawesome/
-static/img/
+lms/static/img/
 
 # Settings
 settings.py
@@ -143,3 +143,6 @@ Ref/
 
 # Gitpod
 .gitpod.yml
+
+# Migrations
+lms/**/migrations
