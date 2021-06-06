@@ -1,0 +1,34 @@
+{#templates/main/main.html#}
+
+{% extends 'g-base.html' %}
+
+
+{% block title %}測驗結果顯示{% endblock %}
+
+{% block body %}
+<br>
+<div class="container custom-container-width">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                <h5><b>{{ quiz_result.quiz }}</b>！</h5>
+                <div class="text-primary">
+                    <ul>
+                        <li>填寫人: {{ quiz_result.user }}</li>
+                        <li>題目數量: {{ quiz_result.quiz.no_of_questions }}</li>
+                        <li>合格: {{ quiz_result.get_quiz_pass_display}}</li>
+                        <li>完成時間: {{ quiz_result.create_time }}</li>
+                    </ul>
+                </div>
+                <div class="col text-right" id="timer-box"></div>
+            </div>
+
+        </div>
+        
+    </div>
+
+
+</div>
+
+{% endblock %}

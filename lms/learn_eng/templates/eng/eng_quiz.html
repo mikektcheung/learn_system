@@ -1,0 +1,66 @@
+{#templates/eng/eng_quiz.html#}
+
+{% extends 'g-base.html' %}
+{% load static %}
+
+{% block title %}{{ quiz.name }}{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'quiz/quiz.js' %}" defer></script> 
+{% endblock scripts %}
+
+{% block styles %}
+
+{% endblock styles %}
+
+
+{% block body %}
+<br>
+<div class="container custom-container-width">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                <h5><b>{{ quiz.name }}</b>！</h5>
+                <div class="text-primary">
+                    <ul>
+                        <li>題目數量: {{ quiz.no_of_questions }}</li>
+                        <li>時間: {{ quiz.time }}</li>
+                    </ul>
+                </div>
+                <div class="col text-right" id="timer-box"></div>
+            </div>
+
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'eng-quiz' %}" class="btn btn-danger btn-block">退出</a>
+        </div>
+        
+    </div>
+
+    
+    <form id="quiz-form">
+        {% csrf_token %}
+        <div class="row">   
+            <div id="quiz-box"></div>    
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary btn-block">提交</button>
+            </div>
+        </div>
+    </form>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div id="score-box"></div>
+        </div>
+        <div class="col-md-12">
+            <div id="result-box"></div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

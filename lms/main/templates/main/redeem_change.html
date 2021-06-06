@@ -1,0 +1,45 @@
+{#templates/main/main.html#}
+
+{% extends 'g-base.html' %}
+
+{% block title %}更改積分{% endblock %}
+
+{% block body %}
+<br>
+<div class="container custom-container-width">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                <h5><b><i class="fas fa-gift"></i>幫 {{ p.user.first_name }} 更改積分</b></h5>
+            </div>
+        </div>
+        
+    </div>
+
+    <form action="" method="POST" id="redeem-form">
+        {% csrf_token %} 
+        <div class="row">
+            <div class="col-md-12">
+                <h5>輸入內容：</h5>
+                <input type="text" name="content" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" id="content">
+            </div>
+        </div>
+        <br>
+        {% if rtype %}
+        <div class="row">
+        {% for r in rtype %}
+        
+            <div class="col-md-3">
+                <button type="submit" class="btn {% if t == '1' %}btn-primary{% else %}btn-danger{% endif %} btn-lg btn-block mb-3" value="{{ r.id }}" name="score">{{ r }}</button>
+            </div>
+        
+        {% endfor %}
+        </div>
+        {% endif %}
+    </form>
+
+
+</div>
+
+{% endblock %}

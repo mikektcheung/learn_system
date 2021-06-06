@@ -1,0 +1,71 @@
+{#templates/eng/eng_quiz_list.html#}
+
+{% extends 'g-base.html' %}
+{% load static %}
+
+
+{% block title %}英文單元{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'quiz/quiz_list.js' %}" defer></script> 
+{% endblock scripts %}
+
+{% block body %}
+
+<br>
+<div class="container custom-container-width">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                <h3>請選擇<b>英文練習</b>！</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for obj in object_list %}
+        <div class="col-md-3">
+            <div class="alert alert-light">
+                <h5 style="text-align:center">{{ obj.name }}</h5>
+                <button 
+                    class="btn btn-outline-primary btn-block btn-link modal-button" 
+                    data-pk="{{obj.pk}}" 
+                    data-quiz="{{obj.name}}" 
+                    data-questions="{{obj.no_of_questions}}"
+                    data-difficulty="{{obj.difficluty}}"
+                    data-time="{{obj.time}}"
+                    data-pass = "{{obj.pass_score}}"
+                    data-toggle = "modal" 
+                    data-target="#quizStartModal"
+                >
+                    開始練習
+                </button>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Modal Element-->
+    <div class="modal fade" id="quizStartModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="quizModalLabel">開始英文練習</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="modal-body-confirm"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-dismiss="modal">否</button>
+              <button type="button" id="start-button" class="btn btn-success">是</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+{% endblock %}

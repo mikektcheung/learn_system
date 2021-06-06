@@ -1,0 +1,83 @@
+{#templates/main/main.html#}
+
+{% extends 'g-base.html' %}
+
+{% load has_group %}
+
+{% block title %}主頁{% endblock %}
+
+{% block styles %}
+
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 150%;
+        max-height:200px;
+        max-width:200px;
+    }
+</style>
+
+{% endblock styles %}
+
+{% block body %}
+<br>
+<div class="container custom-container-width">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="alert alert-success">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="{{ p.picture.url }}" class="center">
+                    </div>
+                    <div class="col-md-9">
+                        <h3 style="text-align:center">{{ request.user.first_name }}</h3>
+                        <h3 style="text-align:center"><i class="fas fa-gift"></i> 總積分：{{ point }}</h3>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        {% if request.user|has_group:"parent" %} 
+        <div class="col-md-3">
+            <div class="alert alert-warning">
+                <h3>孩子積分</h3>
+                {% if children %}
+                <ul>
+                {% for c in children %}
+                <li style="font-size:25px">{{ c.user__first_name }}： {{ c.score }} <a href="{% url 'redeem-change' pk=c.pk %}?type=1"><i class="fas fa-plus-circle"></i></a> <a href="{% url 'redeem-change' pk=c.pk %}?type=-1"><i class="fas fa-minus-circle"></i></a></li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+
+        {% endif %}
+
+        <div class="col-md-3">
+            <a href="#">
+                <div class="alert alert-info">
+                    <h3 style="text-align:center">中文</h3>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'eng-main' %}">
+                <div class="alert alert-info">
+                    <h3 style="text-align:center">English</h3>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'eng-main' %}">
+                <div class="alert alert-info">
+                    <h3 style="text-align:center">數學</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

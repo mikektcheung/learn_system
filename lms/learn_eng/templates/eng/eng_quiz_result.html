@@ -1,0 +1,68 @@
+{#templates/eng/eng_quiz.html#}
+
+{% extends 'g-base.html' %}
+{% load static %}
+
+{% block title %}{{ quiz.name }}{% endblock %}
+
+{% block scripts %}
+
+{% endblock scripts %}
+
+{% block styles %}
+
+{% endblock styles %}
+
+
+{% block body %}
+<br>
+<div class="container custom-container-width">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                <h4><b>{{ quiz.quiz.name }}</b> 的結果</h4>
+                <div class="text-primary">
+                    <ul>
+                        <li>填寫人: {{ quiz.user.first_name }}</li>
+                        <li>題目數量: {{ quiz.quiz.no_of_questions }}</li>
+                        <li>分數: <font style="font-size:40px">{{ quiz.score }}分 ({% if quiz.quiz_pass == 1 %}<i class="fas fa-smile-wink"></i>{% else %}<i class="fas fa-sad-tear">{% endif %})</i></font></li>
+                        <li>測試時間: {{ quiz.create_time|date:"Y-m-d h:m" }}</li>
+                    </ul>
+                </div>
+                <div class="col text-right" id="timer-box"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+    {% if quiz_question %}
+    <div class="row">
+        {% for q in quiz_question %}
+        <div class="col-md-12">
+            {% if q.correct == 1 %}
+            <div class="alert alert-light">
+            {% else %}
+            <div class="alert alert-danger">
+            {% endif %}
+                <h4><b>{{ q.question }}</b></h4>
+                <p style="font-size:20px">你的答案： {{ q.answer_selected }} {% if q.correct == 1 %}<i class="fas fa-check-circle"></i>{% else %}<i class="fas fa-times-circle"></i>{% endif %}</p>
+                <p style="font-size:20px">正確答案： {{ q.answer_correct }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-2">
+            <a href="{% url 'eng-quiz' %}" class="btn btn-danger btn-block">退出</a>
+        </div>
+    </div>
+    
+
+</div>
+{% endblock %}

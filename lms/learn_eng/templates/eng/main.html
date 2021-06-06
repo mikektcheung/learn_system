@@ -1,0 +1,33 @@
+{#templates/eng/main.html#}
+
+{% extends 'g-base.html' %}
+
+
+{% block title %}英文單元{% endblock %}
+
+{% block body %}
+
+<br>
+<div class="container custom-container-width">
+
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{% url 'eng-quiz' %}">
+                <div class="alert alert-info">
+                    <h3 style="text-align:center">英文練習</h3>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#">
+                <div class="alert alert-info">
+                    <h3 style="text-align:center">英文詞彙</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+
+</div>
+
+{% endblock %}
