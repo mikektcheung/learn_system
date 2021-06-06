@@ -146,3 +146,6 @@ Ref/
 
 # Migrations
 lms/**/migrations
+
+#uWGI
+lms_uwsgi.ini
