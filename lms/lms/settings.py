@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-#Do not commit to github 2021
+#Do not commit to github 2021 test
 
 from pathlib import Path
 
