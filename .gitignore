@@ -133,7 +133,7 @@ static/fontawesome/
 static/img/
 
 # Settings
-lms/settings.py
+lms/lms/settings.py
 
 #Database
 db.sqlite3
